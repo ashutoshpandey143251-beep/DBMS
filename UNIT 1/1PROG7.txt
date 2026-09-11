@@ -1,0 +1,60 @@
+CREATE TABLE RESULT
+(
+    Rollno NUMBER(5) PRIMARY KEY,
+    Name VARCHAR2(30),
+    Sub1 NUMBER(3),
+    Sub2 NUMBER(3),
+    Sub3 NUMBER(3),
+    Sub4 NUMBER(3),
+    Sub5 NUMBER(3),
+    Total NUMBER(4),
+    Per NUMBER(5,2),
+    Grade VARCHAR2(2)
+);
+INSERT INTO RESULT(Rollno, Name, Sub1, Sub2, Sub3, Sub4, Sub5)
+VALUES(101, 'Rahul', 85, 78, 90, 88, 80);
+
+COMMIT;
+DECLARE
+    R NUMBER;
+    T NUMBER;
+    P NUMBER;
+    G VARCHAR2(2);
+BEGIN
+    R := &Rollno;
+
+    SELECT Sub1 + Sub2 + Sub3 + Sub4 + Sub5
+    INTO T
+    FROM RESULT
+    WHERE Rollno = R;
+
+    P := T / 5;
+
+    IF P >= 90 THEN
+        G := 'A+';
+    ELSIF P >= 80 THEN
+        G := 'A';
+    ELSIF P >= 70 THEN
+        G := 'B';
+    ELSIF P >= 60 THEN
+        G := 'C';
+    ELSIF P >= 50 THEN
+        G := 'D';
+    ELSE
+        G := 'F';
+    END IF;
+
+    UPDATE RESULT
+    SET Total = T,
+        Per = P,
+        Grade = G
+    WHERE Rollno = R;
+
+    DBMS_OUTPUT.PUT_LINE('Roll No = ' || R);
+    DBMS_OUTPUT.PUT_LINE('Total = ' || T);
+    DBMS_OUTPUT.PUT_LINE('Percentage = ' || P || '%');
+    DBMS_OUTPUT.PUT_LINE('Grade = ' || G);
+
+    COMMIT;
+END;
+/
