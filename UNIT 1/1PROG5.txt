@@ -1,0 +1,12 @@
+DECLARE
+    C NUMBER;
+    F NUMBER;
+BEGIN
+    C := &C;
+
+    F := (C * 9 / 5) + 32;
+
+    DBMS_OUTPUT.PUT_LINE('Temperature in Celsius = ' || C);
+    DBMS_OUTPUT.PUT_LINE('Temperature in Fahrenheit = ' || F);
+END;
+/
