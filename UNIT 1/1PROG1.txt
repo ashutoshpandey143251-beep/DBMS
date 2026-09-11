@@ -1,0 +1,18 @@
+DECLARE
+    P NUMBER;
+    R NUMBER;
+    T NUMBER;
+    SI NUMBER;
+BEGIN
+    P := &P;
+    R := &R;
+    T := &T;
+
+    SI := (P * R * T) / 100;
+
+    DBMS_OUTPUT.PUT_LINE('Principal Amount = ' || P);
+    DBMS_OUTPUT.PUT_LINE('Rate of Interest = ' || R || '%');
+    DBMS_OUTPUT.PUT_LINE('Number of Years = ' || T);
+    DBMS_OUTPUT.PUT_LINE('Simple Interest = ' || SI);
+END;
+/
