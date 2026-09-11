@@ -1,0 +1,36 @@
+DECLARE
+    N NUMBER;
+    I NUMBER;
+BEGIN
+    N := &N;
+
+    -- Using LOOP
+    DBMS_OUTPUT.PUT_LINE('Using LOOP:');
+    I := 1;
+
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(I);
+        I := I + 1;
+
+        EXIT WHEN I > N;
+    END LOOP;
+
+    -- Using FOR LOOP
+    DBMS_OUTPUT.PUT_LINE('Using FOR LOOP:');
+
+    FOR I IN 1..N
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(I);
+    END LOOP;
+
+    -- Using WHILE LOOP
+    DBMS_OUTPUT.PUT_LINE('Using WHILE LOOP:');
+    I := 1;
+
+    WHILE I <= N
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(I);
+        I := I + 1;
+    END LOOP;
+END;
+/
