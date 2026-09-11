@@ -1,0 +1,15 @@
+DECLARE
+    N NUMBER;
+    SQUARE NUMBER;
+    CUBE NUMBER;
+BEGIN
+    N := &N;
+
+    SQUARE := N * N;
+    CUBE := N * N * N;
+
+    DBMS_OUTPUT.PUT_LINE('Given Number = ' || N);
+    DBMS_OUTPUT.PUT_LINE('Square = ' || SQUARE);
+    DBMS_OUTPUT.PUT_LINE('Cube = ' || CUBE);
+END;
+/
