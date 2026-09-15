@@ -1,0 +1,19 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_name  RESULT.STUDENT_NAME%TYPE := '&student_name';
+    v_marks RESULT.MARKS%TYPE;
+BEGIN
+    SELECT MARKS
+    INTO v_marks
+    FROM RESULT
+    WHERE STUDENT_NAME = v_name;
+
+    DBMS_OUTPUT.PUT_LINE('Student Name: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('Marks: ' || v_marks);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Student does not exist in RESULT table.');
+END;
+/
