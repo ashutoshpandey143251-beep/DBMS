@@ -1,0 +1,19 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_name   EMPLOYEE.ENAME%TYPE := '&employee_name';
+    v_salary EMPLOYEE.BASIC_SALARY%TYPE;
+BEGIN
+    SELECT BASIC_SALARY
+    INTO v_salary
+    FROM EMPLOYEE
+    WHERE ENAME = v_name;
+
+    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('Basic Salary: ' || v_salary);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employee does not exist in EMPLOYEE table.');
+END;
+/
