@@ -1,0 +1,30 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_commission EMPLOYEE.COMMISSION%TYPE;
+    v_empno      EMPLOYEE.EMPNO%TYPE := &EMPNO;
+
+    NULL_COMMISSION EXCEPTION;
+
+BEGIN
+    SELECT COMMISSION
+    INTO v_commission
+    FROM EMPLOYEE
+    WHERE EMPNO = v_empno;
+
+    IF v_commission IS NULL THEN
+        RAISE NULL_COMMISSION;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('Employee No: ' || v_empno);
+    DBMS_OUTPUT.PUT_LINE('Commission: ' || v_commission);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employee not found.');
+
+    WHEN NULL_COMMISSION THEN
+        DBMS_OUTPUT.PUT_LINE('Commission is NULL for this employee.');
+
+END;
+/
